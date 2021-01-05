@@ -30,9 +30,10 @@ ActiveRecord::Schema.define(version: 2020_12_22_191742) do
 
   create_table "songs", force: :cascade do |t|
     t.string "name"
-    t.string "description"
     t.string "artist"
-    t.string "genre"
+    t.string "album"
+    t.string "url"
+    t.string "length"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
