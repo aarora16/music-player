@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+html {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+body {
+  font-family: 'Quicksand', sans-serif;
+  color: #bce2d2;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background: white;
+}
+
+div.App {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  position: relative;
+  background: blue;
+
+
+}
+
+/* Topbar */
+
+div.Topbar {
+position: absolute;
+top: 0;
+height: 50px;
+background: #003e1f;
+left: 200px;
+width: calc(100% - 200px);
+padding: 20px;
+color: #bce2d2;
+}
+
+.login-link {
+  float: right;
+}
+
+.chevron left small icon {
+  padding-right: 25px;
+}
+
+
+/* sidebar */
+
+div.Sidebar {
+height: 100vh;
+width: 200px;
+background: #003e1f;
+padding-top: 20px;
+padding-left: 10px;
+overflow: auto;
+color: #bce2d2;
+}
+
+.searchbar {
+  width: 180px;
+}
+
+.Sidelink {
+  text-decoration: none !important;
+  color: #bce2d2;
+}
+
+.Sidelink:active {
+  text-decoration: none;
+  color: #bce2d2;
+}
+
+.Sidelink:hover {
+  color: #d90429;
+}
+
+.Sidelink:visited {
+  color: #bce2d2 !important;
+}
+
+div.Playlists {
+  padding-top: 14px;
+}
+
+
+/* main */
+
+div.Main {
+width: calc(100% - 200px);
+height: 100vh;
+padding: 50 px;
+background: #264234;
+text-align: center;
+overflow: auto;
+
+}
+
+
+/* Login */
+
+/* Signup */
+div.Signup {
+  width: 55%;
+  margin: auto;
+  background-color: #bce2d2;
+  padding: 20px;
+  border-radius: 25px;
+}
+
+
+/* Player */
+
+div.Player {
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 75px;
+background: #003e1f;
+z-index: 99;
+color: #bce2d2;
+padding-top: 15px;
+text-align: center;
+}
+
+
