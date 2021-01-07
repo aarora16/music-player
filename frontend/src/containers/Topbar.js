@@ -1,5 +1,6 @@
 import React from 'react'
 import { Icon } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -12,7 +13,7 @@ const Topbar = () => {
 
 
         
-        <span className="login-link">Login/Sign Up</span>
+        <span className="login-link"><NavLink exact to="/login" activeClassName="Sidelink">Login/Sign Up</NavLink></span>
 
       </div>
 
