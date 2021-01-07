@@ -111,6 +111,118 @@ songs = [
     url: 'https://open.spotify.com/track/1F8tXdM8cz9bH5PiK1SuAB?si=fxiQBj2qTFiiCf9MuDCqMA',
     length: '3:46'
   },
+  {
+    name: 'Santa Baby',
+    artist: 'Kylie Minogue',
+    album: 'A Kylie Christmas',
+    url: 'https://open.spotify.com/track/0cM5URUqqQTpJWonmdzF1J?si=zqbwBeoDQ4mlahM_1R_9VQ',
+    length: ''
+  }
+  {
+    name: "Do They Know It's Christmas? - 1984 Version",
+    artist: 'Band Aid',
+    album: "Do They Know It's Christmas?",
+    url: 'https://open.spotify.com/track/1hvpDAxZPKjKztOc72sv06?si=JKPDcQp9RImy0pcobwts0w',
+    length: ''
+  }
+  {
+    name: "Naughty List (with Dixie D'Amelio)",
+    artist: 'Liam Payne',
+    album: 'Naughty List',
+    url: 'https://open.spotify.com/track/2Y0ktCGrGoGcQFXsGztvhi?si=Mfba715ZS5SeXc5WHsNZrw',
+    length: ''
+  }
+  {
+    name: "Baby, It's Cold Outside (feat. Meghan Trainer)",
+    artist: 'Brett Eldredge',
+    album: 'Glow',
+    url: 'https://open.spotify.com/track/5Q2P43CJra0uRAogjHyJDK?si=fQMBQ-APTQqECvXZVTe3Jg',
+    length: ''
+  }
+  {
+    name: 'Driving Home for Christmas',
+    artist: 'Chris Rea',
+    album: 'Christmas Songs',
+    url: 'https://open.spotify.com/track/3Z3QhZAZpqwZa1phsbQ3JZ?si=N0BrC-O9TXqJIMLcRlHnjg',
+    length: ''
+  }
+  {
+    name: 'Take Me Home For Christmas',
+    artist: 'Dan + Shay',
+    album: 'Take Me Home For Christmas',
+    url: 'https://open.spotify.com/track/72HP2M4jjw4t0AIGdEVGEF?si=nds2avVISMi2fWvnfUV9KQ',
+    length: ''
+  }
+  {
+    name: "Like It's Christmas",
+    artist: 'Jonas Brothers',
+    album: "Like It's Christmas",
+    url: 'https://open.spotify.com/track/1OjmlSFuzYflWjSMTCyTJv?si=mQiITWj5RSiXIJGgUi-Tmw',
+    length: ''
+  }
+  {
+    name: 'The Lighthouse Keeper',
+    artist: 'Sam Smith',
+    album: 'The Lighthouse Keeper',
+    url: 'https://open.spotify.com/track/2WUVQQAsWvScEdBVilRYaR?si=xEqaK0uuT1mTnjTBjziYdw',
+    length: ''
+  }
+  {
+    name: 'All I Want (For Christmas)',
+    artist: 'Liam Payne',
+    album: 'All I Want (For Christmas)',
+    url: 'https://open.spotify.com/track/7lbto9KYTHq5V1PetjIMOF?si=HWKpUGMbRWG8pxUe98ICSQ',
+    length: ''
+  }
+  {
+    name: 'Make It To Christmas',
+    artist: 'Alessia Cara',
+    album: 'Make It To Christmas',
+    url: 'https://open.spotify.com/track/6RS6rcjnWrdfVuu2U2W2dj?si=HhDsFyaqSLeq1sV_SGdPLw',
+    length: ''
+  }
+  {
+    name: 'Christmas (Baby Please Come Home)',
+    artist: 'ROZES',
+    album: 'A Very ROZES Christmas',
+    url: 'https://open.spotify.com/track/2FWKbF1s4s5Z8ZQkyIGNQU?si=plBNoe7-Q2mvoxyx-OZb_g',
+    length: ''
+  }
+  {
+    name: 'Last Christmas',
+    artist: 'James TW',
+    album: 'Last Christmas',
+    url: '',
+    length: ''
+  }
+  {
+    name: 'Christmas Without You',
+    artist: 'Ava Max',
+    album: 'Christmas Without You',
+    url: '',
+    length: ''
+  }
+  {
+    name: 'Santa Baby',
+    artist: 'Ariana Grande',
+    album: 'Christmas Kisses',
+    url: '',
+    length: ''
+  }
+  {
+    name: 'Christmas Love',
+    artist: 'Justin Bieber',
+    album: 'Under The Mistletoe',
+    url: '',
+    length: ''
+  }
+  {
+    name: 'Last Christmas',
+    artist: 'Ariana Grande',
+    album: 'Christmas Kisses',
+    url: '',
+    length: ''
+  }
 ]
 
 songs.each do |song|
