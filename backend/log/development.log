@@ -1079,3 +1079,288 @@ Completed 200 OK in 31ms (Views: 17.3ms | ActiveRecord: 1.5ms | Allocations: 128
 Completed 200 OK in 33ms (Views: 18.1ms | ActiveRecord: 0.9ms | Allocations: 14072)
 
 
+Started GET "/playlists" for ::1 at 2021-01-07 17:56:34 -0600
+Started GET "/songs" for ::1 at 2021-01-07 17:56:34 -0600
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PlaylistsController#index as */*
+Processing by SongsController#index as */*
+  [1m[36mPlaylist Load (0.4ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  [1m[36mSong Load (0.4ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 19ms (Views: 11.6ms | ActiveRecord: 0.9ms | Allocations: 13092)
+
+
+Completed 200 OK in 21ms (Views: 14.9ms | ActiveRecord: 0.6ms | Allocations: 14151)
+
+
+Started GET "/playlists" for ::1 at 2021-01-07 18:20:08 -0600
+Started GET "/songs" for ::1 at 2021-01-07 18:20:08 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.4ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 10ms (Views: 1.3ms | ActiveRecord: 0.4ms | Allocations: 3439)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.5ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 13ms (Views: 9.6ms | ActiveRecord: 1.0ms | Allocations: 10385)
+
+
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mSong Load (0.7ms)[0m  [1m[34mSELECT "songs".* FROM "songs" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mPlaylist Load (0.5ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlist_songs"[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "playlist_songs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "playlist_id" integer, "song_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlists"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "playlists" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "name" varchar, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX "index_playlists_on_user_id" ON "playlists" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "songs"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "songs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "artist" varchar, "album" varchar, "url" varchar, "length" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "password" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20201222191742)[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20201222185920),
+(20201222190155),
+(20201222191735);
+
+[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-01-08 02:22:05.490455"], ["updated_at", "2021-01-08 02:22:05.490455"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "b7de59d6e431b58cf8cd9b31144c3fbe9ec63d7c"], ["created_at", "2021-01-08 02:22:05.500675"], ["updated_at", "2021-01-08 02:22:05.500675"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlist_songs"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "playlist_songs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "playlist_id" integer, "song_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlists"[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "playlists" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "name" varchar, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX "index_playlists_on_user_id" ON "playlists" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "songs"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "songs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "artist" varchar, "album" varchar, "url" varchar, "length" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "password" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20201222191742)[0m
+  [1m[35m (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20201222185920),
+(20201222190155),
+(20201222191735);
+
+[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-01-08 02:22:05.555480"], ["updated_at", "2021-01-08 02:22:05.555480"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-01-08 02:22:05.560233"], ["key", "environment"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "b7de59d6e431b58cf8cd9b31144c3fbe9ec63d7c"], ["created_at", "2021-01-08 02:22:05.564914"], ["updated_at", "2021-01-08 02:22:05.564914"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlist_songs"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "playlist_songs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "playlist_id" integer, "song_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlists"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "playlists" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "name" varchar, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX "index_playlists_on_user_id" ON "playlists" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "songs"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "songs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "artist" varchar, "album" varchar, "url" varchar, "length" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "password" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20201222191742)[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20201222185920),
+(20201222190155),
+(20201222191735);
+
+[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-01-08 02:22:38.957854"], ["updated_at", "2021-01-08 02:22:38.957854"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "b7de59d6e431b58cf8cd9b31144c3fbe9ec63d7c"], ["created_at", "2021-01-08 02:22:38.964173"], ["updated_at", "2021-01-08 02:22:38.964173"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlist_songs"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "playlist_songs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "playlist_id" integer, "song_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "playlists"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "playlists" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "name" varchar, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX "index_playlists_on_user_id" ON "playlists" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "songs"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "songs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "artist" varchar, "album" varchar, "url" varchar, "length" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "password" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20201222191742)[0m
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20201222185920),
+(20201222190155),
+(20201222191735);
+
+[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-01-08 02:22:39.007450"], ["updated_at", "2021-01-08 02:22:39.007450"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-01-08 02:22:39.012426"], ["key", "environment"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "b7de59d6e431b58cf8cd9b31144c3fbe9ec63d7c"], ["created_at", "2021-01-08 02:22:39.017059"], ["updated_at", "2021-01-08 02:22:39.017059"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mSong Load (0.1ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.4ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "All I Want For Christmas Is You"], ["artist", "Mariah Carey"], ["album", "Merry Christmas"], ["url", "lib/songs/Mariah Carey - All I Want For Christmas Is You (Lyrics).mp3"], ["length", "4:01"], ["created_at", "2021-01-08 02:24:35.190848"], ["updated_at", "2021-01-08 02:24:35.190848"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "Wham!"], ["album", "Christmas Hits"], ["url", "https://open.spotify.com/track/0QPYn15U8IQHKcH2LDfrek?si=X4xeFn-eQwOubzLW8ZYdCQ"], ["length", "4:26"], ["created_at", "2021-01-08 02:24:35.195114"], ["updated_at", "2021-01-08 02:24:35.195114"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Santa Tell Me"], ["artist", "Ariana Grande"], ["album", "Santa Tell Me"], ["url", "https://open.spotify.com/track/1ADjWm8QNhgNV8yCNNgQ1T?si=4d4SesTXQy-YSD_yreG9zg"], ["length", "3:24"], ["created_at", "2021-01-08 02:24:35.198559"], ["updated_at", "2021-01-08 02:24:35.198559"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Rockin' Around The Christmas Tree"], ["artist", "Brenda Lee"], ["album", "Anthology 1956-1980 (Volume 1&2)"], ["url", "https://open.spotify.com/track/1XBc4r6ltXjkFJBrsttwIF?si=_0qXjB1sSQ2EFQP-lgUGrg"], ["length", "2:06"], ["created_at", "2021-01-08 02:24:35.202015"], ["updated_at", "2021-01-08 02:24:35.202015"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "It's Beginning to Look a Lot like Christmas"], ["artist", "Michael Buble"], ["album", "Christmas (Deluxe Special Edition)"], ["url", "https://open.spotify.com/track/5a1iz510sv2W9Dt1MvFd5R?si=SDTcrNlyQAKoaQhzJF5crA"], ["length", "3:27"], ["created_at", "2021-01-08 02:24:35.205450"], ["updated_at", "2021-01-08 02:24:35.205450"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Jingle Bell Rock"], ["artist", "Bobby Helms"], ["album", "Four Christmases"], ["url", "https://open.spotify.com/track/2wCPMWR3y4xclijuCcLJv7?si=EiwZyWMkSt-FtAD8Od92Dg"], ["length", "2:12"], ["created_at", "2021-01-08 02:24:35.219890"], ["updated_at", "2021-01-08 02:24:35.219890"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "It's the Most Wonderful Time of the Year"], ["artist", "Andy Williams"], ["album", "The Andy Williams Christmas Album"], ["url", "https://open.spotify.com/track/5hslUAKq9I9CG2bAulFkHN?si=J7j66-okSS-VFWKa9mOCTQ"], ["length", "2:32"], ["created_at", "2021-01-08 02:24:35.223578"], ["updated_at", "2021-01-08 02:24:35.223578"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Let It Snow, Let It Snow, Let It Snow"], ["artist", "Dean Martin"], ["album", "My Kind Of Christmas"], ["url", "https://open.spotify.com/track/1prYSRBfwPvE3v8jSRZL3Q?si=lJ_E0QGoSIaZ3PMxq8IZiw"], ["length", "1:58"], ["created_at", "2021-01-08 02:24:35.227098"], ["updated_at", "2021-01-08 02:24:35.227098"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Underneath the Tree"], ["artist", "Kelly Clarkson"], ["album", "Wrapped In Red"], ["url", "https://open.spotify.com/track/3nAp4IvdMPPWEH9uuXFFV5?si=rYScsqcdS1aHGg3jOf5hcQ"], ["length", "3:50"], ["created_at", "2021-01-08 02:24:35.233283"], ["updated_at", "2021-01-08 02:24:35.233283"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Sleigh Ride"], ["artist", "The Ronettes"], ["album", "A Christmas Gift For You From Phil Spector"], ["url", "https://open.spotify.com/track/5ASM6Qjiav2xPe7gRkQMsQ?si=WZm9YO_cQ3e3eCDPTwdDzA"], ["length", "3:01"], ["created_at", "2021-01-08 02:24:35.237046"], ["updated_at", "2021-01-08 02:24:35.237046"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Feliz Navidad"], ["artist", "Jose Feliciano"], ["album", "The Definite Best"], ["url", "https://open.spotify.com/track/7taXf5odg9xCAZERYfyOkS?si=3QRhVI5aQU-XYRFqcrll-w"], ["length", "3:02"], ["created_at", "2021-01-08 02:24:35.240495"], ["updated_at", "2021-01-08 02:24:35.240495"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Snowman"], ["artist", "Sia"], ["album", "Everyday Is Christmas (Deluxe Edition)"], ["url", "https://open.spotify.com/track/7uoFMmxln0GPXQ0AcCBXRq?si=4h57bNLZStyr4ssqDC1R7w"], ["length", "2:46"], ["created_at", "2021-01-08 02:24:35.244456"], ["updated_at", "2021-01-08 02:24:35.244456"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Holly Jolly Christmas"], ["artist", "Michael Buble"], ["album", "Christmas (Deluxe Special Edition)"], ["url", "https://open.spotify.com/track/5PuKlCjfEVIXl0ZBp5ZW9g?si=c9i1ywDXReu1Smp0TnlaUg"], ["length", "2:00"], ["created_at", "2021-01-08 02:24:35.247740"], ["updated_at", "2021-01-08 02:24:35.247740"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Mistletoe"], ["artist", "Justin Bieber"], ["album", "Under The Mistletoe (Deluxe Edition)"], ["url", "https://open.spotify.com/track/32OWobmyAz8J2qA8iWekyS?si=xoq2kxsIQOat9ywCkbOMgw"], ["length", "3:03"], ["created_at", "2021-01-08 02:24:35.251080"], ["updated_at", "2021-01-08 02:24:35.251080"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Wonderful Christmastime (Edited Version)"], ["artist", "Paul McCartney"], ["album", "Now That's What I Call Christmas"], ["url", "https://open.spotify.com/track/1F8tXdM8cz9bH5PiK1SuAB?si=fxiQBj2qTFiiCf9MuDCqMA"], ["length", "3:46"], ["created_at", "2021-01-08 02:24:35.254417"], ["updated_at", "2021-01-08 02:24:35.254417"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Santa Baby"], ["artist", "Kylie Minogue"], ["album", "A Kylie Christmas"], ["url", "https://open.spotify.com/track/0cM5URUqqQTpJWonmdzF1J?si=zqbwBeoDQ4mlahM_1R_9VQ"], ["length", ""], ["created_at", "2021-01-08 02:24:35.257644"], ["updated_at", "2021-01-08 02:24:35.257644"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Do They Know It's Christmas? - 1984 Version"], ["artist", "Band Aid"], ["album", "Do They Know It's Christmas?"], ["url", "https://open.spotify.com/track/1hvpDAxZPKjKztOc72sv06?si=JKPDcQp9RImy0pcobwts0w"], ["length", ""], ["created_at", "2021-01-08 02:24:35.260917"], ["updated_at", "2021-01-08 02:24:35.260917"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Naughty List (with Dixie D'Amelio)"], ["artist", "Liam Payne"], ["album", "Naughty List"], ["url", "https://open.spotify.com/track/2Y0ktCGrGoGcQFXsGztvhi?si=Mfba715ZS5SeXc5WHsNZrw"], ["length", ""], ["created_at", "2021-01-08 02:24:35.264630"], ["updated_at", "2021-01-08 02:24:35.264630"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Baby, It's Cold Outside (feat. Meghan Trainer)"], ["artist", "Brett Eldredge"], ["album", "Glow"], ["url", "https://open.spotify.com/track/5Q2P43CJra0uRAogjHyJDK?si=fQMBQ-APTQqECvXZVTe3Jg"], ["length", ""], ["created_at", "2021-01-08 02:24:35.271715"], ["updated_at", "2021-01-08 02:24:35.271715"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Driving Home for Christmas"], ["artist", "Chris Rea"], ["album", "Christmas Songs"], ["url", "https://open.spotify.com/track/3Z3QhZAZpqwZa1phsbQ3JZ?si=N0BrC-O9TXqJIMLcRlHnjg"], ["length", ""], ["created_at", "2021-01-08 02:24:35.277470"], ["updated_at", "2021-01-08 02:24:35.277470"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Take Me Home For Christmas"], ["artist", "Dan + Shay"], ["album", "Take Me Home For Christmas"], ["url", "https://open.spotify.com/track/72HP2M4jjw4t0AIGdEVGEF?si=nds2avVISMi2fWvnfUV9KQ"], ["length", ""], ["created_at", "2021-01-08 02:24:35.282518"], ["updated_at", "2021-01-08 02:24:35.282518"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Like It's Christmas"], ["artist", "Jonas Brothers"], ["album", "Like It's Christmas"], ["url", "https://open.spotify.com/track/1OjmlSFuzYflWjSMTCyTJv?si=mQiITWj5RSiXIJGgUi-Tmw"], ["length", ""], ["created_at", "2021-01-08 02:24:35.288143"], ["updated_at", "2021-01-08 02:24:35.288143"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "The Lighthouse Keeper"], ["artist", "Sam Smith"], ["album", "The Lighthouse Keeper"], ["url", "https://open.spotify.com/track/2WUVQQAsWvScEdBVilRYaR?si=xEqaK0uuT1mTnjTBjziYdw"], ["length", ""], ["created_at", "2021-01-08 02:24:35.293578"], ["updated_at", "2021-01-08 02:24:35.293578"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "All I Want (For Christmas)"], ["artist", "Liam Payne"], ["album", "All I Want (For Christmas)"], ["url", "https://open.spotify.com/track/7lbto9KYTHq5V1PetjIMOF?si=HWKpUGMbRWG8pxUe98ICSQ"], ["length", ""], ["created_at", "2021-01-08 02:24:35.298741"], ["updated_at", "2021-01-08 02:24:35.298741"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.6ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Make It To Christmas"], ["artist", "Alessia Cara"], ["album", "Make It To Christmas"], ["url", "https://open.spotify.com/track/6RS6rcjnWrdfVuu2U2W2dj?si=HhDsFyaqSLeq1sV_SGdPLw"], ["length", ""], ["created_at", "2021-01-08 02:24:35.304017"], ["updated_at", "2021-01-08 02:24:35.304017"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Christmas (Baby Please Come Home)"], ["artist", "ROZES"], ["album", "A Very ROZES Christmas"], ["url", "https://open.spotify.com/track/2FWKbF1s4s5Z8ZQkyIGNQU?si=plBNoe7-Q2mvoxyx-OZb_g"], ["length", ""], ["created_at", "2021-01-08 02:24:35.308826"], ["updated_at", "2021-01-08 02:24:35.308826"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "James TW"], ["album", "Last Christmas"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 02:24:35.313794"], ["updated_at", "2021-01-08 02:24:35.313794"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Christmas Without You"], ["artist", "Ava Max"], ["album", "Christmas Without You"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 02:24:35.319035"], ["updated_at", "2021-01-08 02:24:35.319035"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Santa Baby"], ["artist", "Ariana Grande"], ["album", "Christmas Kisses"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 02:24:35.322768"], ["updated_at", "2021-01-08 02:24:35.322768"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.4ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Christmas Love"], ["artist", "Justin Bieber"], ["album", "Under The Mistletoe"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 02:24:35.326934"], ["updated_at", "2021-01-08 02:24:35.326934"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "Ariana Grande"], ["album", "Christmas Kisses"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 02:24:35.347743"], ["updated_at", "2021-01-08 02:24:35.347743"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
