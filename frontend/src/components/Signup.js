@@ -26,7 +26,10 @@ class Signup extends React.Component {
         user: this.state
       })
     }).then(res => res.json())
-    .then(user => console.log(user))
+    .then(token => {
+      localStorage.setItem('token', token.auth_key)
+      this.props.history.push('/')
+    })
   }
 
   render(){

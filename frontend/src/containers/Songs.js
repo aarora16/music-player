@@ -1,5 +1,5 @@
 import React from 'react'
- import { Icon } from 'semantic-ui-react'
+//  import { Icon } from 'semantic-ui-react'
 
 const Songs = (props) => {
     return (
@@ -11,7 +11,8 @@ const Songs = (props) => {
 
 
                 
-            <table>
+            {/* <table>
+                    <tbody>
                 <tr>
                     <td>#</td>
                     <td>Name</td>
@@ -25,7 +26,8 @@ const Songs = (props) => {
                     <td><Icon name="plus" size="tiny" /></td>
                 </tr>
                 ))}
-            </table>
+                </tbody>
+            </table> */}
               
           
      

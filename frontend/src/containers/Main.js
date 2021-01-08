@@ -12,14 +12,14 @@ const Main = (props) => {
       <br></br>
 
       
-      <h1>All Songs</h1>
+      {/* <h1>All Songs</h1> */}
 
       
       
       <Card.Group>
             {
               props.songs.map(recent => (
-                <Card>
+                <Card key={recent.id}>
                 <Card.Content header={recent.name} />
                 <Card.Content description={recent.artist} />
                 <Card.Content extra>

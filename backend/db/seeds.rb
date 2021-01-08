@@ -15,7 +15,7 @@ songs = [
     name: 'All I Want For Christmas Is You',
     artist: 'Mariah Carey',
     album: 'Merry Christmas',
-    url: 'lib/songs/Mariah Carey - All I Want For Christmas Is You (Lyrics).mp3',
+    url: 'https://open.spotify.com/track/0bYg9bo50gSsH3LtXe2SQn?si=KCJaiQ5yQoK1cwHeqs3Lhg',
     length: '4:01'
   },
   {
@@ -233,4 +233,17 @@ songs = [
 songs.each do |song|
   Song.create(name: song[:name], artist: song[:artist], album: song[:album], url: song[:url], length: song[:length])
 end
+
+u1 = User.create(username: 'dbrisco10', password: 'dbrisco10')
+
+p1 = Playlist.create(
+  user_id: u1.id,
+  name: 'Ariana Christmas',
+  description: 'Tunes by Ari'
+)
+
+s1 = Song.first
+s2 = Song.last
+
+ps1 = PlaylistSong.create(playlist_id: p1.id, song_id: s1.id)
 

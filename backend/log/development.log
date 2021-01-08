@@ -1364,3 +1364,1181 @@ Completed 200 OK in 13ms (Views: 9.6ms | ActiveRecord: 1.0ms | Allocations: 1038
   [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
   [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "Ariana Grande"], ["album", "Christmas Kisses"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 02:24:35.347743"], ["updated_at", "2021-01-08 02:24:35.347743"]]
   [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RemovePasswordFromUsers (20210108044515)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ausers" ("id" integer NOT NULL PRIMARY KEY, "username" varchar DEFAULT NULL, "password" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "ausers" ("id","username","password","created_at","updated_at")
+                     SELECT "id","username","password","created_at","updated_at" FROM "users"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer NOT NULL PRIMARY KEY, "username" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "users" ("id","username","created_at","updated_at")
+                     SELECT "id","username","created_at","updated_at" FROM "ausers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "ausers"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210108044515"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddPasswordDigestToUsers (20210108044745)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "password_digest" varchar[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210108044745"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.4ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 2]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 3]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 4]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 5]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 6]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 7]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 8]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 9]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 10]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 11]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 12]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 13]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 14]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 15]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 16]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 17]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 18]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 19]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 20]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 21]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 22]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 23]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 24]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 25]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 26]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 27]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 28]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 29]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (1.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 30]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 31]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.4ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "All I Want For Christmas Is You"], ["artist", "Mariah Carey"], ["album", "Merry Christmas"], ["url", "https://open.spotify.com/track/0bYg9bo50gSsH3LtXe2SQn?si=KCJaiQ5yQoK1cwHeqs3Lhg"], ["length", "4:01"], ["created_at", "2021-01-08 05:31:48.348307"], ["updated_at", "2021-01-08 05:31:48.348307"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "Wham!"], ["album", "Christmas Hits"], ["url", "https://open.spotify.com/track/0QPYn15U8IQHKcH2LDfrek?si=X4xeFn-eQwOubzLW8ZYdCQ"], ["length", "4:26"], ["created_at", "2021-01-08 05:31:48.352197"], ["updated_at", "2021-01-08 05:31:48.352197"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Santa Tell Me"], ["artist", "Ariana Grande"], ["album", "Santa Tell Me"], ["url", "https://open.spotify.com/track/1ADjWm8QNhgNV8yCNNgQ1T?si=4d4SesTXQy-YSD_yreG9zg"], ["length", "3:24"], ["created_at", "2021-01-08 05:31:48.355516"], ["updated_at", "2021-01-08 05:31:48.355516"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Rockin' Around The Christmas Tree"], ["artist", "Brenda Lee"], ["album", "Anthology 1956-1980 (Volume 1&2)"], ["url", "https://open.spotify.com/track/1XBc4r6ltXjkFJBrsttwIF?si=_0qXjB1sSQ2EFQP-lgUGrg"], ["length", "2:06"], ["created_at", "2021-01-08 05:31:48.359467"], ["updated_at", "2021-01-08 05:31:48.359467"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "It's Beginning to Look a Lot like Christmas"], ["artist", "Michael Buble"], ["album", "Christmas (Deluxe Special Edition)"], ["url", "https://open.spotify.com/track/5a1iz510sv2W9Dt1MvFd5R?si=SDTcrNlyQAKoaQhzJF5crA"], ["length", "3:27"], ["created_at", "2021-01-08 05:31:48.363219"], ["updated_at", "2021-01-08 05:31:48.363219"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Jingle Bell Rock"], ["artist", "Bobby Helms"], ["album", "Four Christmases"], ["url", "https://open.spotify.com/track/2wCPMWR3y4xclijuCcLJv7?si=EiwZyWMkSt-FtAD8Od92Dg"], ["length", "2:12"], ["created_at", "2021-01-08 05:31:48.366498"], ["updated_at", "2021-01-08 05:31:48.366498"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.4ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "It's the Most Wonderful Time of the Year"], ["artist", "Andy Williams"], ["album", "The Andy Williams Christmas Album"], ["url", "https://open.spotify.com/track/5hslUAKq9I9CG2bAulFkHN?si=J7j66-okSS-VFWKa9mOCTQ"], ["length", "2:32"], ["created_at", "2021-01-08 05:31:48.369774"], ["updated_at", "2021-01-08 05:31:48.369774"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Let It Snow, Let It Snow, Let It Snow"], ["artist", "Dean Martin"], ["album", "My Kind Of Christmas"], ["url", "https://open.spotify.com/track/1prYSRBfwPvE3v8jSRZL3Q?si=lJ_E0QGoSIaZ3PMxq8IZiw"], ["length", "1:58"], ["created_at", "2021-01-08 05:31:48.373149"], ["updated_at", "2021-01-08 05:31:48.373149"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Underneath the Tree"], ["artist", "Kelly Clarkson"], ["album", "Wrapped In Red"], ["url", "https://open.spotify.com/track/3nAp4IvdMPPWEH9uuXFFV5?si=rYScsqcdS1aHGg3jOf5hcQ"], ["length", "3:50"], ["created_at", "2021-01-08 05:31:48.376873"], ["updated_at", "2021-01-08 05:31:48.376873"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Sleigh Ride"], ["artist", "The Ronettes"], ["album", "A Christmas Gift For You From Phil Spector"], ["url", "https://open.spotify.com/track/5ASM6Qjiav2xPe7gRkQMsQ?si=WZm9YO_cQ3e3eCDPTwdDzA"], ["length", "3:01"], ["created_at", "2021-01-08 05:31:48.380227"], ["updated_at", "2021-01-08 05:31:48.380227"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Feliz Navidad"], ["artist", "Jose Feliciano"], ["album", "The Definite Best"], ["url", "https://open.spotify.com/track/7taXf5odg9xCAZERYfyOkS?si=3QRhVI5aQU-XYRFqcrll-w"], ["length", "3:02"], ["created_at", "2021-01-08 05:31:48.384814"], ["updated_at", "2021-01-08 05:31:48.384814"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Snowman"], ["artist", "Sia"], ["album", "Everyday Is Christmas (Deluxe Edition)"], ["url", "https://open.spotify.com/track/7uoFMmxln0GPXQ0AcCBXRq?si=4h57bNLZStyr4ssqDC1R7w"], ["length", "2:46"], ["created_at", "2021-01-08 05:31:48.388589"], ["updated_at", "2021-01-08 05:31:48.388589"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Holly Jolly Christmas"], ["artist", "Michael Buble"], ["album", "Christmas (Deluxe Special Edition)"], ["url", "https://open.spotify.com/track/5PuKlCjfEVIXl0ZBp5ZW9g?si=c9i1ywDXReu1Smp0TnlaUg"], ["length", "2:00"], ["created_at", "2021-01-08 05:31:48.392109"], ["updated_at", "2021-01-08 05:31:48.392109"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Mistletoe"], ["artist", "Justin Bieber"], ["album", "Under The Mistletoe (Deluxe Edition)"], ["url", "https://open.spotify.com/track/32OWobmyAz8J2qA8iWekyS?si=xoq2kxsIQOat9ywCkbOMgw"], ["length", "3:03"], ["created_at", "2021-01-08 05:31:48.395423"], ["updated_at", "2021-01-08 05:31:48.395423"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Wonderful Christmastime (Edited Version)"], ["artist", "Paul McCartney"], ["album", "Now That's What I Call Christmas"], ["url", "https://open.spotify.com/track/1F8tXdM8cz9bH5PiK1SuAB?si=fxiQBj2qTFiiCf9MuDCqMA"], ["length", "3:46"], ["created_at", "2021-01-08 05:31:48.398901"], ["updated_at", "2021-01-08 05:31:48.398901"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Santa Baby"], ["artist", "Kylie Minogue"], ["album", "A Kylie Christmas"], ["url", "https://open.spotify.com/track/0cM5URUqqQTpJWonmdzF1J?si=zqbwBeoDQ4mlahM_1R_9VQ"], ["length", ""], ["created_at", "2021-01-08 05:31:48.402098"], ["updated_at", "2021-01-08 05:31:48.402098"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Do They Know It's Christmas? - 1984 Version"], ["artist", "Band Aid"], ["album", "Do They Know It's Christmas?"], ["url", "https://open.spotify.com/track/1hvpDAxZPKjKztOc72sv06?si=JKPDcQp9RImy0pcobwts0w"], ["length", ""], ["created_at", "2021-01-08 05:31:48.413157"], ["updated_at", "2021-01-08 05:31:48.413157"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Naughty List (with Dixie D'Amelio)"], ["artist", "Liam Payne"], ["album", "Naughty List"], ["url", "https://open.spotify.com/track/2Y0ktCGrGoGcQFXsGztvhi?si=Mfba715ZS5SeXc5WHsNZrw"], ["length", ""], ["created_at", "2021-01-08 05:31:48.416598"], ["updated_at", "2021-01-08 05:31:48.416598"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Baby, It's Cold Outside (feat. Meghan Trainer)"], ["artist", "Brett Eldredge"], ["album", "Glow"], ["url", "https://open.spotify.com/track/5Q2P43CJra0uRAogjHyJDK?si=fQMBQ-APTQqECvXZVTe3Jg"], ["length", ""], ["created_at", "2021-01-08 05:31:48.420232"], ["updated_at", "2021-01-08 05:31:48.420232"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Driving Home for Christmas"], ["artist", "Chris Rea"], ["album", "Christmas Songs"], ["url", "https://open.spotify.com/track/3Z3QhZAZpqwZa1phsbQ3JZ?si=N0BrC-O9TXqJIMLcRlHnjg"], ["length", ""], ["created_at", "2021-01-08 05:31:48.423568"], ["updated_at", "2021-01-08 05:31:48.423568"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Take Me Home For Christmas"], ["artist", "Dan + Shay"], ["album", "Take Me Home For Christmas"], ["url", "https://open.spotify.com/track/72HP2M4jjw4t0AIGdEVGEF?si=nds2avVISMi2fWvnfUV9KQ"], ["length", ""], ["created_at", "2021-01-08 05:31:48.426801"], ["updated_at", "2021-01-08 05:31:48.426801"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Like It's Christmas"], ["artist", "Jonas Brothers"], ["album", "Like It's Christmas"], ["url", "https://open.spotify.com/track/1OjmlSFuzYflWjSMTCyTJv?si=mQiITWj5RSiXIJGgUi-Tmw"], ["length", ""], ["created_at", "2021-01-08 05:31:48.430077"], ["updated_at", "2021-01-08 05:31:48.430077"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "The Lighthouse Keeper"], ["artist", "Sam Smith"], ["album", "The Lighthouse Keeper"], ["url", "https://open.spotify.com/track/2WUVQQAsWvScEdBVilRYaR?si=xEqaK0uuT1mTnjTBjziYdw"], ["length", ""], ["created_at", "2021-01-08 05:31:48.433200"], ["updated_at", "2021-01-08 05:31:48.433200"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "All I Want (For Christmas)"], ["artist", "Liam Payne"], ["album", "All I Want (For Christmas)"], ["url", "https://open.spotify.com/track/7lbto9KYTHq5V1PetjIMOF?si=HWKpUGMbRWG8pxUe98ICSQ"], ["length", ""], ["created_at", "2021-01-08 05:31:48.436447"], ["updated_at", "2021-01-08 05:31:48.436447"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Make It To Christmas"], ["artist", "Alessia Cara"], ["album", "Make It To Christmas"], ["url", "https://open.spotify.com/track/6RS6rcjnWrdfVuu2U2W2dj?si=HhDsFyaqSLeq1sV_SGdPLw"], ["length", ""], ["created_at", "2021-01-08 05:31:48.439468"], ["updated_at", "2021-01-08 05:31:48.439468"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Christmas (Baby Please Come Home)"], ["artist", "ROZES"], ["album", "A Very ROZES Christmas"], ["url", "https://open.spotify.com/track/2FWKbF1s4s5Z8ZQkyIGNQU?si=plBNoe7-Q2mvoxyx-OZb_g"], ["length", ""], ["created_at", "2021-01-08 05:31:48.442701"], ["updated_at", "2021-01-08 05:31:48.442701"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "James TW"], ["album", "Last Christmas"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:31:48.445981"], ["updated_at", "2021-01-08 05:31:48.445981"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Christmas Without You"], ["artist", "Ava Max"], ["album", "Christmas Without You"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:31:48.449010"], ["updated_at", "2021-01-08 05:31:48.449010"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Santa Baby"], ["artist", "Ariana Grande"], ["album", "Christmas Kisses"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:31:48.452214"], ["updated_at", "2021-01-08 05:31:48.452214"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Christmas Love"], ["artist", "Justin Bieber"], ["album", "Under The Mistletoe"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:31:48.455325"], ["updated_at", "2021-01-08 05:31:48.455325"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "Ariana Grande"], ["album", "Christmas Kisses"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:31:48.458414"], ["updated_at", "2021-01-08 05:31:48.458414"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 32]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 33]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 34]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 35]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 36]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 37]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 38]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 39]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 40]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 41]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 42]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 43]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 44]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 45]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 46]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 47]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 48]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 49]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 50]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 51]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 52]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 53]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 54]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 55]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 56]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 57]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 58]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 59]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 60]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 61]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 62]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "All I Want For Christmas Is You"], ["artist", "Mariah Carey"], ["album", "Merry Christmas"], ["url", "https://open.spotify.com/track/0bYg9bo50gSsH3LtXe2SQn?si=KCJaiQ5yQoK1cwHeqs3Lhg"], ["length", "4:01"], ["created_at", "2021-01-08 05:32:44.469226"], ["updated_at", "2021-01-08 05:32:44.469226"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "Wham!"], ["album", "Christmas Hits"], ["url", "https://open.spotify.com/track/0QPYn15U8IQHKcH2LDfrek?si=X4xeFn-eQwOubzLW8ZYdCQ"], ["length", "4:26"], ["created_at", "2021-01-08 05:32:44.472723"], ["updated_at", "2021-01-08 05:32:44.472723"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Santa Tell Me"], ["artist", "Ariana Grande"], ["album", "Santa Tell Me"], ["url", "https://open.spotify.com/track/1ADjWm8QNhgNV8yCNNgQ1T?si=4d4SesTXQy-YSD_yreG9zg"], ["length", "3:24"], ["created_at", "2021-01-08 05:32:44.475820"], ["updated_at", "2021-01-08 05:32:44.475820"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Rockin' Around The Christmas Tree"], ["artist", "Brenda Lee"], ["album", "Anthology 1956-1980 (Volume 1&2)"], ["url", "https://open.spotify.com/track/1XBc4r6ltXjkFJBrsttwIF?si=_0qXjB1sSQ2EFQP-lgUGrg"], ["length", "2:06"], ["created_at", "2021-01-08 05:32:44.478899"], ["updated_at", "2021-01-08 05:32:44.478899"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "It's Beginning to Look a Lot like Christmas"], ["artist", "Michael Buble"], ["album", "Christmas (Deluxe Special Edition)"], ["url", "https://open.spotify.com/track/5a1iz510sv2W9Dt1MvFd5R?si=SDTcrNlyQAKoaQhzJF5crA"], ["length", "3:27"], ["created_at", "2021-01-08 05:32:44.481902"], ["updated_at", "2021-01-08 05:32:44.481902"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Jingle Bell Rock"], ["artist", "Bobby Helms"], ["album", "Four Christmases"], ["url", "https://open.spotify.com/track/2wCPMWR3y4xclijuCcLJv7?si=EiwZyWMkSt-FtAD8Od92Dg"], ["length", "2:12"], ["created_at", "2021-01-08 05:32:44.484979"], ["updated_at", "2021-01-08 05:32:44.484979"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "It's the Most Wonderful Time of the Year"], ["artist", "Andy Williams"], ["album", "The Andy Williams Christmas Album"], ["url", "https://open.spotify.com/track/5hslUAKq9I9CG2bAulFkHN?si=J7j66-okSS-VFWKa9mOCTQ"], ["length", "2:32"], ["created_at", "2021-01-08 05:32:44.488022"], ["updated_at", "2021-01-08 05:32:44.488022"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Let It Snow, Let It Snow, Let It Snow"], ["artist", "Dean Martin"], ["album", "My Kind Of Christmas"], ["url", "https://open.spotify.com/track/1prYSRBfwPvE3v8jSRZL3Q?si=lJ_E0QGoSIaZ3PMxq8IZiw"], ["length", "1:58"], ["created_at", "2021-01-08 05:32:44.491004"], ["updated_at", "2021-01-08 05:32:44.491004"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Underneath the Tree"], ["artist", "Kelly Clarkson"], ["album", "Wrapped In Red"], ["url", "https://open.spotify.com/track/3nAp4IvdMPPWEH9uuXFFV5?si=rYScsqcdS1aHGg3jOf5hcQ"], ["length", "3:50"], ["created_at", "2021-01-08 05:32:44.494098"], ["updated_at", "2021-01-08 05:32:44.494098"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Sleigh Ride"], ["artist", "The Ronettes"], ["album", "A Christmas Gift For You From Phil Spector"], ["url", "https://open.spotify.com/track/5ASM6Qjiav2xPe7gRkQMsQ?si=WZm9YO_cQ3e3eCDPTwdDzA"], ["length", "3:01"], ["created_at", "2021-01-08 05:32:44.497066"], ["updated_at", "2021-01-08 05:32:44.497066"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Feliz Navidad"], ["artist", "Jose Feliciano"], ["album", "The Definite Best"], ["url", "https://open.spotify.com/track/7taXf5odg9xCAZERYfyOkS?si=3QRhVI5aQU-XYRFqcrll-w"], ["length", "3:02"], ["created_at", "2021-01-08 05:32:44.500911"], ["updated_at", "2021-01-08 05:32:44.500911"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Snowman"], ["artist", "Sia"], ["album", "Everyday Is Christmas (Deluxe Edition)"], ["url", "https://open.spotify.com/track/7uoFMmxln0GPXQ0AcCBXRq?si=4h57bNLZStyr4ssqDC1R7w"], ["length", "2:46"], ["created_at", "2021-01-08 05:32:44.504407"], ["updated_at", "2021-01-08 05:32:44.504407"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Holly Jolly Christmas"], ["artist", "Michael Buble"], ["album", "Christmas (Deluxe Special Edition)"], ["url", "https://open.spotify.com/track/5PuKlCjfEVIXl0ZBp5ZW9g?si=c9i1ywDXReu1Smp0TnlaUg"], ["length", "2:00"], ["created_at", "2021-01-08 05:32:44.507427"], ["updated_at", "2021-01-08 05:32:44.507427"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Mistletoe"], ["artist", "Justin Bieber"], ["album", "Under The Mistletoe (Deluxe Edition)"], ["url", "https://open.spotify.com/track/32OWobmyAz8J2qA8iWekyS?si=xoq2kxsIQOat9ywCkbOMgw"], ["length", "3:03"], ["created_at", "2021-01-08 05:32:44.510443"], ["updated_at", "2021-01-08 05:32:44.510443"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Wonderful Christmastime (Edited Version)"], ["artist", "Paul McCartney"], ["album", "Now That's What I Call Christmas"], ["url", "https://open.spotify.com/track/1F8tXdM8cz9bH5PiK1SuAB?si=fxiQBj2qTFiiCf9MuDCqMA"], ["length", "3:46"], ["created_at", "2021-01-08 05:32:44.513403"], ["updated_at", "2021-01-08 05:32:44.513403"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.4ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Santa Baby"], ["artist", "Kylie Minogue"], ["album", "A Kylie Christmas"], ["url", "https://open.spotify.com/track/0cM5URUqqQTpJWonmdzF1J?si=zqbwBeoDQ4mlahM_1R_9VQ"], ["length", ""], ["created_at", "2021-01-08 05:32:44.523326"], ["updated_at", "2021-01-08 05:32:44.523326"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Do They Know It's Christmas? - 1984 Version"], ["artist", "Band Aid"], ["album", "Do They Know It's Christmas?"], ["url", "https://open.spotify.com/track/1hvpDAxZPKjKztOc72sv06?si=JKPDcQp9RImy0pcobwts0w"], ["length", ""], ["created_at", "2021-01-08 05:32:44.526673"], ["updated_at", "2021-01-08 05:32:44.526673"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Naughty List (with Dixie D'Amelio)"], ["artist", "Liam Payne"], ["album", "Naughty List"], ["url", "https://open.spotify.com/track/2Y0ktCGrGoGcQFXsGztvhi?si=Mfba715ZS5SeXc5WHsNZrw"], ["length", ""], ["created_at", "2021-01-08 05:32:44.530100"], ["updated_at", "2021-01-08 05:32:44.530100"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Baby, It's Cold Outside (feat. Meghan Trainer)"], ["artist", "Brett Eldredge"], ["album", "Glow"], ["url", "https://open.spotify.com/track/5Q2P43CJra0uRAogjHyJDK?si=fQMBQ-APTQqECvXZVTe3Jg"], ["length", ""], ["created_at", "2021-01-08 05:32:44.533166"], ["updated_at", "2021-01-08 05:32:44.533166"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Driving Home for Christmas"], ["artist", "Chris Rea"], ["album", "Christmas Songs"], ["url", "https://open.spotify.com/track/3Z3QhZAZpqwZa1phsbQ3JZ?si=N0BrC-O9TXqJIMLcRlHnjg"], ["length", ""], ["created_at", "2021-01-08 05:32:44.536063"], ["updated_at", "2021-01-08 05:32:44.536063"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Take Me Home For Christmas"], ["artist", "Dan + Shay"], ["album", "Take Me Home For Christmas"], ["url", "https://open.spotify.com/track/72HP2M4jjw4t0AIGdEVGEF?si=nds2avVISMi2fWvnfUV9KQ"], ["length", ""], ["created_at", "2021-01-08 05:32:44.539275"], ["updated_at", "2021-01-08 05:32:44.539275"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Like It's Christmas"], ["artist", "Jonas Brothers"], ["album", "Like It's Christmas"], ["url", "https://open.spotify.com/track/1OjmlSFuzYflWjSMTCyTJv?si=mQiITWj5RSiXIJGgUi-Tmw"], ["length", ""], ["created_at", "2021-01-08 05:32:44.542108"], ["updated_at", "2021-01-08 05:32:44.542108"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "The Lighthouse Keeper"], ["artist", "Sam Smith"], ["album", "The Lighthouse Keeper"], ["url", "https://open.spotify.com/track/2WUVQQAsWvScEdBVilRYaR?si=xEqaK0uuT1mTnjTBjziYdw"], ["length", ""], ["created_at", "2021-01-08 05:32:44.544868"], ["updated_at", "2021-01-08 05:32:44.544868"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "All I Want (For Christmas)"], ["artist", "Liam Payne"], ["album", "All I Want (For Christmas)"], ["url", "https://open.spotify.com/track/7lbto9KYTHq5V1PetjIMOF?si=HWKpUGMbRWG8pxUe98ICSQ"], ["length", ""], ["created_at", "2021-01-08 05:32:44.547905"], ["updated_at", "2021-01-08 05:32:44.547905"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Make It To Christmas"], ["artist", "Alessia Cara"], ["album", "Make It To Christmas"], ["url", "https://open.spotify.com/track/6RS6rcjnWrdfVuu2U2W2dj?si=HhDsFyaqSLeq1sV_SGdPLw"], ["length", ""], ["created_at", "2021-01-08 05:32:44.550778"], ["updated_at", "2021-01-08 05:32:44.550778"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Christmas (Baby Please Come Home)"], ["artist", "ROZES"], ["album", "A Very ROZES Christmas"], ["url", "https://open.spotify.com/track/2FWKbF1s4s5Z8ZQkyIGNQU?si=plBNoe7-Q2mvoxyx-OZb_g"], ["length", ""], ["created_at", "2021-01-08 05:32:44.553772"], ["updated_at", "2021-01-08 05:32:44.553772"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "James TW"], ["album", "Last Christmas"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:32:44.556410"], ["updated_at", "2021-01-08 05:32:44.556410"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Christmas Without You"], ["artist", "Ava Max"], ["album", "Christmas Without You"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:32:44.559021"], ["updated_at", "2021-01-08 05:32:44.559021"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Santa Baby"], ["artist", "Ariana Grande"], ["album", "Christmas Kisses"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:32:44.561524"], ["updated_at", "2021-01-08 05:32:44.561524"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Christmas Love"], ["artist", "Justin Bieber"], ["album", "Under The Mistletoe"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:32:44.564083"], ["updated_at", "2021-01-08 05:32:44.564083"]]
+  [1m[35m (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "Ariana Grande"], ["album", "Christmas Kisses"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:32:44.566570"], ["updated_at", "2021-01-08 05:32:44.566570"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs" ORDER BY "songs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mSong Load (0.1ms)[0m  [1m[34mSELECT "songs".* FROM "songs" ORDER BY "songs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?)[0m  [["username", "dbrisco4"], ["created_at", "2021-01-08 05:37:26.529334"], ["updated_at", "2021-01-08 05:37:26.529334"], ["password_digest", "$2a$12$sANuas6DHS.cdG2GV2seZuGPzxlVLlA0/dxU.H2crXf7wUuGKHC3G"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 63]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 64]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 65]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 66]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 67]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 68]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 69]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 70]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 71]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 72]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 73]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 74]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 75]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 76]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 77]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 78]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 79]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 80]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 81]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 82]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 83]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 84]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 85]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 86]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 87]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 88]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 89]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.7ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 90]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 91]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 92]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 93]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "All I Want For Christmas Is You"], ["artist", "Mariah Carey"], ["album", "Merry Christmas"], ["url", "https://open.spotify.com/track/0bYg9bo50gSsH3LtXe2SQn?si=KCJaiQ5yQoK1cwHeqs3Lhg"], ["length", "4:01"], ["created_at", "2021-01-08 05:38:29.071398"], ["updated_at", "2021-01-08 05:38:29.071398"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "Wham!"], ["album", "Christmas Hits"], ["url", "https://open.spotify.com/track/0QPYn15U8IQHKcH2LDfrek?si=X4xeFn-eQwOubzLW8ZYdCQ"], ["length", "4:26"], ["created_at", "2021-01-08 05:38:29.074869"], ["updated_at", "2021-01-08 05:38:29.074869"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Santa Tell Me"], ["artist", "Ariana Grande"], ["album", "Santa Tell Me"], ["url", "https://open.spotify.com/track/1ADjWm8QNhgNV8yCNNgQ1T?si=4d4SesTXQy-YSD_yreG9zg"], ["length", "3:24"], ["created_at", "2021-01-08 05:38:29.077956"], ["updated_at", "2021-01-08 05:38:29.077956"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Rockin' Around The Christmas Tree"], ["artist", "Brenda Lee"], ["album", "Anthology 1956-1980 (Volume 1&2)"], ["url", "https://open.spotify.com/track/1XBc4r6ltXjkFJBrsttwIF?si=_0qXjB1sSQ2EFQP-lgUGrg"], ["length", "2:06"], ["created_at", "2021-01-08 05:38:29.081710"], ["updated_at", "2021-01-08 05:38:29.081710"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "It's Beginning to Look a Lot like Christmas"], ["artist", "Michael Buble"], ["album", "Christmas (Deluxe Special Edition)"], ["url", "https://open.spotify.com/track/5a1iz510sv2W9Dt1MvFd5R?si=SDTcrNlyQAKoaQhzJF5crA"], ["length", "3:27"], ["created_at", "2021-01-08 05:38:29.085269"], ["updated_at", "2021-01-08 05:38:29.085269"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Jingle Bell Rock"], ["artist", "Bobby Helms"], ["album", "Four Christmases"], ["url", "https://open.spotify.com/track/2wCPMWR3y4xclijuCcLJv7?si=EiwZyWMkSt-FtAD8Od92Dg"], ["length", "2:12"], ["created_at", "2021-01-08 05:38:29.088769"], ["updated_at", "2021-01-08 05:38:29.088769"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "It's the Most Wonderful Time of the Year"], ["artist", "Andy Williams"], ["album", "The Andy Williams Christmas Album"], ["url", "https://open.spotify.com/track/5hslUAKq9I9CG2bAulFkHN?si=J7j66-okSS-VFWKa9mOCTQ"], ["length", "2:32"], ["created_at", "2021-01-08 05:38:29.092297"], ["updated_at", "2021-01-08 05:38:29.092297"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Let It Snow, Let It Snow, Let It Snow"], ["artist", "Dean Martin"], ["album", "My Kind Of Christmas"], ["url", "https://open.spotify.com/track/1prYSRBfwPvE3v8jSRZL3Q?si=lJ_E0QGoSIaZ3PMxq8IZiw"], ["length", "1:58"], ["created_at", "2021-01-08 05:38:29.095713"], ["updated_at", "2021-01-08 05:38:29.095713"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Underneath the Tree"], ["artist", "Kelly Clarkson"], ["album", "Wrapped In Red"], ["url", "https://open.spotify.com/track/3nAp4IvdMPPWEH9uuXFFV5?si=rYScsqcdS1aHGg3jOf5hcQ"], ["length", "3:50"], ["created_at", "2021-01-08 05:38:29.099014"], ["updated_at", "2021-01-08 05:38:29.099014"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Sleigh Ride"], ["artist", "The Ronettes"], ["album", "A Christmas Gift For You From Phil Spector"], ["url", "https://open.spotify.com/track/5ASM6Qjiav2xPe7gRkQMsQ?si=WZm9YO_cQ3e3eCDPTwdDzA"], ["length", "3:01"], ["created_at", "2021-01-08 05:38:29.102211"], ["updated_at", "2021-01-08 05:38:29.102211"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Feliz Navidad"], ["artist", "Jose Feliciano"], ["album", "The Definite Best"], ["url", "https://open.spotify.com/track/7taXf5odg9xCAZERYfyOkS?si=3QRhVI5aQU-XYRFqcrll-w"], ["length", "3:02"], ["created_at", "2021-01-08 05:38:29.105053"], ["updated_at", "2021-01-08 05:38:29.105053"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Snowman"], ["artist", "Sia"], ["album", "Everyday Is Christmas (Deluxe Edition)"], ["url", "https://open.spotify.com/track/7uoFMmxln0GPXQ0AcCBXRq?si=4h57bNLZStyr4ssqDC1R7w"], ["length", "2:46"], ["created_at", "2021-01-08 05:38:29.107666"], ["updated_at", "2021-01-08 05:38:29.107666"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Holly Jolly Christmas"], ["artist", "Michael Buble"], ["album", "Christmas (Deluxe Special Edition)"], ["url", "https://open.spotify.com/track/5PuKlCjfEVIXl0ZBp5ZW9g?si=c9i1ywDXReu1Smp0TnlaUg"], ["length", "2:00"], ["created_at", "2021-01-08 05:38:29.110187"], ["updated_at", "2021-01-08 05:38:29.110187"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Mistletoe"], ["artist", "Justin Bieber"], ["album", "Under The Mistletoe (Deluxe Edition)"], ["url", "https://open.spotify.com/track/32OWobmyAz8J2qA8iWekyS?si=xoq2kxsIQOat9ywCkbOMgw"], ["length", "3:03"], ["created_at", "2021-01-08 05:38:29.119958"], ["updated_at", "2021-01-08 05:38:29.119958"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Wonderful Christmastime (Edited Version)"], ["artist", "Paul McCartney"], ["album", "Now That's What I Call Christmas"], ["url", "https://open.spotify.com/track/1F8tXdM8cz9bH5PiK1SuAB?si=fxiQBj2qTFiiCf9MuDCqMA"], ["length", "3:46"], ["created_at", "2021-01-08 05:38:29.123484"], ["updated_at", "2021-01-08 05:38:29.123484"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Santa Baby"], ["artist", "Kylie Minogue"], ["album", "A Kylie Christmas"], ["url", "https://open.spotify.com/track/0cM5URUqqQTpJWonmdzF1J?si=zqbwBeoDQ4mlahM_1R_9VQ"], ["length", ""], ["created_at", "2021-01-08 05:38:29.126946"], ["updated_at", "2021-01-08 05:38:29.126946"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Do They Know It's Christmas? - 1984 Version"], ["artist", "Band Aid"], ["album", "Do They Know It's Christmas?"], ["url", "https://open.spotify.com/track/1hvpDAxZPKjKztOc72sv06?si=JKPDcQp9RImy0pcobwts0w"], ["length", ""], ["created_at", "2021-01-08 05:38:29.130348"], ["updated_at", "2021-01-08 05:38:29.130348"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Naughty List (with Dixie D'Amelio)"], ["artist", "Liam Payne"], ["album", "Naughty List"], ["url", "https://open.spotify.com/track/2Y0ktCGrGoGcQFXsGztvhi?si=Mfba715ZS5SeXc5WHsNZrw"], ["length", ""], ["created_at", "2021-01-08 05:38:29.133385"], ["updated_at", "2021-01-08 05:38:29.133385"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Baby, It's Cold Outside (feat. Meghan Trainer)"], ["artist", "Brett Eldredge"], ["album", "Glow"], ["url", "https://open.spotify.com/track/5Q2P43CJra0uRAogjHyJDK?si=fQMBQ-APTQqECvXZVTe3Jg"], ["length", ""], ["created_at", "2021-01-08 05:38:29.136355"], ["updated_at", "2021-01-08 05:38:29.136355"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Driving Home for Christmas"], ["artist", "Chris Rea"], ["album", "Christmas Songs"], ["url", "https://open.spotify.com/track/3Z3QhZAZpqwZa1phsbQ3JZ?si=N0BrC-O9TXqJIMLcRlHnjg"], ["length", ""], ["created_at", "2021-01-08 05:38:29.139313"], ["updated_at", "2021-01-08 05:38:29.139313"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Take Me Home For Christmas"], ["artist", "Dan + Shay"], ["album", "Take Me Home For Christmas"], ["url", "https://open.spotify.com/track/72HP2M4jjw4t0AIGdEVGEF?si=nds2avVISMi2fWvnfUV9KQ"], ["length", ""], ["created_at", "2021-01-08 05:38:29.142191"], ["updated_at", "2021-01-08 05:38:29.142191"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Like It's Christmas"], ["artist", "Jonas Brothers"], ["album", "Like It's Christmas"], ["url", "https://open.spotify.com/track/1OjmlSFuzYflWjSMTCyTJv?si=mQiITWj5RSiXIJGgUi-Tmw"], ["length", ""], ["created_at", "2021-01-08 05:38:29.144859"], ["updated_at", "2021-01-08 05:38:29.144859"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "The Lighthouse Keeper"], ["artist", "Sam Smith"], ["album", "The Lighthouse Keeper"], ["url", "https://open.spotify.com/track/2WUVQQAsWvScEdBVilRYaR?si=xEqaK0uuT1mTnjTBjziYdw"], ["length", ""], ["created_at", "2021-01-08 05:38:29.147718"], ["updated_at", "2021-01-08 05:38:29.147718"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "All I Want (For Christmas)"], ["artist", "Liam Payne"], ["album", "All I Want (For Christmas)"], ["url", "https://open.spotify.com/track/7lbto9KYTHq5V1PetjIMOF?si=HWKpUGMbRWG8pxUe98ICSQ"], ["length", ""], ["created_at", "2021-01-08 05:38:29.150228"], ["updated_at", "2021-01-08 05:38:29.150228"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Make It To Christmas"], ["artist", "Alessia Cara"], ["album", "Make It To Christmas"], ["url", "https://open.spotify.com/track/6RS6rcjnWrdfVuu2U2W2dj?si=HhDsFyaqSLeq1sV_SGdPLw"], ["length", ""], ["created_at", "2021-01-08 05:38:29.152802"], ["updated_at", "2021-01-08 05:38:29.152802"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Christmas (Baby Please Come Home)"], ["artist", "ROZES"], ["album", "A Very ROZES Christmas"], ["url", "https://open.spotify.com/track/2FWKbF1s4s5Z8ZQkyIGNQU?si=plBNoe7-Q2mvoxyx-OZb_g"], ["length", ""], ["created_at", "2021-01-08 05:38:29.155275"], ["updated_at", "2021-01-08 05:38:29.155275"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "James TW"], ["album", "Last Christmas"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:38:29.157973"], ["updated_at", "2021-01-08 05:38:29.157973"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Christmas Without You"], ["artist", "Ava Max"], ["album", "Christmas Without You"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:38:29.160471"], ["updated_at", "2021-01-08 05:38:29.160471"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Santa Baby"], ["artist", "Ariana Grande"], ["album", "Christmas Kisses"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:38:29.163378"], ["updated_at", "2021-01-08 05:38:29.163378"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Christmas Love"], ["artist", "Justin Bieber"], ["album", "Under The Mistletoe"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:38:29.165849"], ["updated_at", "2021-01-08 05:38:29.165849"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "Ariana Grande"], ["album", "Christmas Kisses"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:38:29.174632"], ["updated_at", "2021-01-08 05:38:29.174632"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?)[0m  [["username", "dbrisco10"], ["created_at", "2021-01-08 05:38:29.365991"], ["updated_at", "2021-01-08 05:38:29.365991"], ["password_digest", "$2a$12$T30i06cx2jrBMi.HKpSlqOkfasSFHGgROywYQO7JK/l5gyE0KEelC"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 94]]
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 95]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 96]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 97]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 98]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 99]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 100]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 101]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 102]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 103]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 104]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 105]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 106]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 107]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 108]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 109]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 110]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 111]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 112]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 113]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 114]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 115]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 116]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 117]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 118]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.3ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 119]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 120]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 121]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 122]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 123]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Destroy (0.2ms)[0m  [1m[31mDELETE FROM "songs" WHERE "songs"."id" = ?[0m  [["id", 124]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "All I Want For Christmas Is You"], ["artist", "Mariah Carey"], ["album", "Merry Christmas"], ["url", "https://open.spotify.com/track/0bYg9bo50gSsH3LtXe2SQn?si=KCJaiQ5yQoK1cwHeqs3Lhg"], ["length", "4:01"], ["created_at", "2021-01-08 05:38:45.842413"], ["updated_at", "2021-01-08 05:38:45.842413"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "Wham!"], ["album", "Christmas Hits"], ["url", "https://open.spotify.com/track/0QPYn15U8IQHKcH2LDfrek?si=X4xeFn-eQwOubzLW8ZYdCQ"], ["length", "4:26"], ["created_at", "2021-01-08 05:38:45.845745"], ["updated_at", "2021-01-08 05:38:45.845745"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Santa Tell Me"], ["artist", "Ariana Grande"], ["album", "Santa Tell Me"], ["url", "https://open.spotify.com/track/1ADjWm8QNhgNV8yCNNgQ1T?si=4d4SesTXQy-YSD_yreG9zg"], ["length", "3:24"], ["created_at", "2021-01-08 05:38:45.848928"], ["updated_at", "2021-01-08 05:38:45.848928"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Rockin' Around The Christmas Tree"], ["artist", "Brenda Lee"], ["album", "Anthology 1956-1980 (Volume 1&2)"], ["url", "https://open.spotify.com/track/1XBc4r6ltXjkFJBrsttwIF?si=_0qXjB1sSQ2EFQP-lgUGrg"], ["length", "2:06"], ["created_at", "2021-01-08 05:38:45.852067"], ["updated_at", "2021-01-08 05:38:45.852067"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "It's Beginning to Look a Lot like Christmas"], ["artist", "Michael Buble"], ["album", "Christmas (Deluxe Special Edition)"], ["url", "https://open.spotify.com/track/5a1iz510sv2W9Dt1MvFd5R?si=SDTcrNlyQAKoaQhzJF5crA"], ["length", "3:27"], ["created_at", "2021-01-08 05:38:45.855115"], ["updated_at", "2021-01-08 05:38:45.855115"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Jingle Bell Rock"], ["artist", "Bobby Helms"], ["album", "Four Christmases"], ["url", "https://open.spotify.com/track/2wCPMWR3y4xclijuCcLJv7?si=EiwZyWMkSt-FtAD8Od92Dg"], ["length", "2:12"], ["created_at", "2021-01-08 05:38:45.858170"], ["updated_at", "2021-01-08 05:38:45.858170"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "It's the Most Wonderful Time of the Year"], ["artist", "Andy Williams"], ["album", "The Andy Williams Christmas Album"], ["url", "https://open.spotify.com/track/5hslUAKq9I9CG2bAulFkHN?si=J7j66-okSS-VFWKa9mOCTQ"], ["length", "2:32"], ["created_at", "2021-01-08 05:38:45.861282"], ["updated_at", "2021-01-08 05:38:45.861282"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Let It Snow, Let It Snow, Let It Snow"], ["artist", "Dean Martin"], ["album", "My Kind Of Christmas"], ["url", "https://open.spotify.com/track/1prYSRBfwPvE3v8jSRZL3Q?si=lJ_E0QGoSIaZ3PMxq8IZiw"], ["length", "1:58"], ["created_at", "2021-01-08 05:38:45.869901"], ["updated_at", "2021-01-08 05:38:45.869901"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Underneath the Tree"], ["artist", "Kelly Clarkson"], ["album", "Wrapped In Red"], ["url", "https://open.spotify.com/track/3nAp4IvdMPPWEH9uuXFFV5?si=rYScsqcdS1aHGg3jOf5hcQ"], ["length", "3:50"], ["created_at", "2021-01-08 05:38:45.874937"], ["updated_at", "2021-01-08 05:38:45.874937"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Sleigh Ride"], ["artist", "The Ronettes"], ["album", "A Christmas Gift For You From Phil Spector"], ["url", "https://open.spotify.com/track/5ASM6Qjiav2xPe7gRkQMsQ?si=WZm9YO_cQ3e3eCDPTwdDzA"], ["length", "3:01"], ["created_at", "2021-01-08 05:38:45.879071"], ["updated_at", "2021-01-08 05:38:45.879071"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Feliz Navidad"], ["artist", "Jose Feliciano"], ["album", "The Definite Best"], ["url", "https://open.spotify.com/track/7taXf5odg9xCAZERYfyOkS?si=3QRhVI5aQU-XYRFqcrll-w"], ["length", "3:02"], ["created_at", "2021-01-08 05:38:45.890648"], ["updated_at", "2021-01-08 05:38:45.890648"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Snowman"], ["artist", "Sia"], ["album", "Everyday Is Christmas (Deluxe Edition)"], ["url", "https://open.spotify.com/track/7uoFMmxln0GPXQ0AcCBXRq?si=4h57bNLZStyr4ssqDC1R7w"], ["length", "2:46"], ["created_at", "2021-01-08 05:38:45.894097"], ["updated_at", "2021-01-08 05:38:45.894097"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Holly Jolly Christmas"], ["artist", "Michael Buble"], ["album", "Christmas (Deluxe Special Edition)"], ["url", "https://open.spotify.com/track/5PuKlCjfEVIXl0ZBp5ZW9g?si=c9i1ywDXReu1Smp0TnlaUg"], ["length", "2:00"], ["created_at", "2021-01-08 05:38:45.897267"], ["updated_at", "2021-01-08 05:38:45.897267"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Mistletoe"], ["artist", "Justin Bieber"], ["album", "Under The Mistletoe (Deluxe Edition)"], ["url", "https://open.spotify.com/track/32OWobmyAz8J2qA8iWekyS?si=xoq2kxsIQOat9ywCkbOMgw"], ["length", "3:03"], ["created_at", "2021-01-08 05:38:45.900209"], ["updated_at", "2021-01-08 05:38:45.900209"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Wonderful Christmastime (Edited Version)"], ["artist", "Paul McCartney"], ["album", "Now That's What I Call Christmas"], ["url", "https://open.spotify.com/track/1F8tXdM8cz9bH5PiK1SuAB?si=fxiQBj2qTFiiCf9MuDCqMA"], ["length", "3:46"], ["created_at", "2021-01-08 05:38:45.903252"], ["updated_at", "2021-01-08 05:38:45.903252"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Santa Baby"], ["artist", "Kylie Minogue"], ["album", "A Kylie Christmas"], ["url", "https://open.spotify.com/track/0cM5URUqqQTpJWonmdzF1J?si=zqbwBeoDQ4mlahM_1R_9VQ"], ["length", ""], ["created_at", "2021-01-08 05:38:45.906233"], ["updated_at", "2021-01-08 05:38:45.906233"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Do They Know It's Christmas? - 1984 Version"], ["artist", "Band Aid"], ["album", "Do They Know It's Christmas?"], ["url", "https://open.spotify.com/track/1hvpDAxZPKjKztOc72sv06?si=JKPDcQp9RImy0pcobwts0w"], ["length", ""], ["created_at", "2021-01-08 05:38:45.909286"], ["updated_at", "2021-01-08 05:38:45.909286"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Naughty List (with Dixie D'Amelio)"], ["artist", "Liam Payne"], ["album", "Naughty List"], ["url", "https://open.spotify.com/track/2Y0ktCGrGoGcQFXsGztvhi?si=Mfba715ZS5SeXc5WHsNZrw"], ["length", ""], ["created_at", "2021-01-08 05:38:45.912346"], ["updated_at", "2021-01-08 05:38:45.912346"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Baby, It's Cold Outside (feat. Meghan Trainer)"], ["artist", "Brett Eldredge"], ["album", "Glow"], ["url", "https://open.spotify.com/track/5Q2P43CJra0uRAogjHyJDK?si=fQMBQ-APTQqECvXZVTe3Jg"], ["length", ""], ["created_at", "2021-01-08 05:38:45.915435"], ["updated_at", "2021-01-08 05:38:45.915435"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Driving Home for Christmas"], ["artist", "Chris Rea"], ["album", "Christmas Songs"], ["url", "https://open.spotify.com/track/3Z3QhZAZpqwZa1phsbQ3JZ?si=N0BrC-O9TXqJIMLcRlHnjg"], ["length", ""], ["created_at", "2021-01-08 05:38:45.918301"], ["updated_at", "2021-01-08 05:38:45.918301"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Take Me Home For Christmas"], ["artist", "Dan + Shay"], ["album", "Take Me Home For Christmas"], ["url", "https://open.spotify.com/track/72HP2M4jjw4t0AIGdEVGEF?si=nds2avVISMi2fWvnfUV9KQ"], ["length", ""], ["created_at", "2021-01-08 05:38:45.921379"], ["updated_at", "2021-01-08 05:38:45.921379"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Like It's Christmas"], ["artist", "Jonas Brothers"], ["album", "Like It's Christmas"], ["url", "https://open.spotify.com/track/1OjmlSFuzYflWjSMTCyTJv?si=mQiITWj5RSiXIJGgUi-Tmw"], ["length", ""], ["created_at", "2021-01-08 05:38:45.924374"], ["updated_at", "2021-01-08 05:38:45.924374"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "The Lighthouse Keeper"], ["artist", "Sam Smith"], ["album", "The Lighthouse Keeper"], ["url", "https://open.spotify.com/track/2WUVQQAsWvScEdBVilRYaR?si=xEqaK0uuT1mTnjTBjziYdw"], ["length", ""], ["created_at", "2021-01-08 05:38:45.927227"], ["updated_at", "2021-01-08 05:38:45.927227"]]
+  [1m[35m (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "All I Want (For Christmas)"], ["artist", "Liam Payne"], ["album", "All I Want (For Christmas)"], ["url", "https://open.spotify.com/track/7lbto9KYTHq5V1PetjIMOF?si=HWKpUGMbRWG8pxUe98ICSQ"], ["length", ""], ["created_at", "2021-01-08 05:38:45.929978"], ["updated_at", "2021-01-08 05:38:45.929978"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Make It To Christmas"], ["artist", "Alessia Cara"], ["album", "Make It To Christmas"], ["url", "https://open.spotify.com/track/6RS6rcjnWrdfVuu2U2W2dj?si=HhDsFyaqSLeq1sV_SGdPLw"], ["length", ""], ["created_at", "2021-01-08 05:38:45.932431"], ["updated_at", "2021-01-08 05:38:45.932431"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Christmas (Baby Please Come Home)"], ["artist", "ROZES"], ["album", "A Very ROZES Christmas"], ["url", "https://open.spotify.com/track/2FWKbF1s4s5Z8ZQkyIGNQU?si=plBNoe7-Q2mvoxyx-OZb_g"], ["length", ""], ["created_at", "2021-01-08 05:38:45.935048"], ["updated_at", "2021-01-08 05:38:45.935048"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "James TW"], ["album", "Last Christmas"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:38:45.942786"], ["updated_at", "2021-01-08 05:38:45.942786"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.3ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Christmas Without You"], ["artist", "Ava Max"], ["album", "Christmas Without You"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:38:45.945677"], ["updated_at", "2021-01-08 05:38:45.945677"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Santa Baby"], ["artist", "Ariana Grande"], ["album", "Christmas Kisses"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:38:45.948392"], ["updated_at", "2021-01-08 05:38:45.948392"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Christmas Love"], ["artist", "Justin Bieber"], ["album", "Under The Mistletoe"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:38:45.950997"], ["updated_at", "2021-01-08 05:38:45.950997"]]
+  [1m[35m (0.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSong Create (0.2ms)[0m  [1m[32mINSERT INTO "songs" ("name", "artist", "album", "url", "length", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Last Christmas"], ["artist", "Ariana Grande"], ["album", "Christmas Kisses"], ["url", ""], ["length", ""], ["created_at", "2021-01-08 05:38:45.953479"], ["updated_at", "2021-01-08 05:38:45.953479"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?)[0m  [["username", "dbrisco10"], ["created_at", "2021-01-08 05:38:46.140841"], ["updated_at", "2021-01-08 05:38:46.140841"], ["password_digest", "$2a$12$.bDCx9hFk6CS2e5xNOZS0eAPCPb18u.zKbWW9GNeq3KWKfcuJlVEy"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPlaylist Create (0.2ms)[0m  [1m[32mINSERT INTO "playlists" ("user_id", "name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 1], ["name", "Ariana Christmas"], ["description", "Tunes by Ari"], ["created_at", "2021-01-08 05:38:46.163953"], ["updated_at", "2021-01-08 05:38:46.163953"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mPlaylist Load (0.2ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs" ORDER BY "songs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPlaylist Load (0.2ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mPlaylist Load (0.2ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists" ORDER BY "playlists"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists" WHERE "playlists"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs" WHERE "songs"."id" = ? LIMIT ?[0m  [["id", 125], ["LIMIT", 1]]
+  [1m[36mPlaylistSong Create (0.4ms)[0m  [1m[32mINSERT INTO "playlist_songs" ("playlist_id", "song_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["playlist_id", 1], ["song_id", 125], ["created_at", "2021-01-08 05:44:14.395308"], ["updated_at", "2021-01-08 05:44:14.395308"]]
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPlaylistSong Load (0.2ms)[0m  [1m[34mSELECT "playlist_songs".* FROM "playlist_songs" LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/songs" for ::1 at 2021-01-08 00:04:17 -0600
+Started GET "/playlists" for ::1 at 2021-01-08 00:04:17 -0600
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.7ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 31ms (Views: 24.1ms | ActiveRecord: 1.3ms | Allocations: 13979)
+
+
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 12ms (Views: 6.1ms | ActiveRecord: 0.6ms | Allocations: 6815)
+
+
+Started GET "/playlists" for ::1 at 2021-01-08 00:07:03 -0600
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.1ms | Allocations: 950)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 00:07:03 -0600
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.2ms | Allocations: 6527)
+
+
+Started GET "/playlists" for ::1 at 2021-01-08 00:11:34 -0600
+Started GET "/songs" for ::1 at 2021-01-08 00:11:34 -0600
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 937)
+
+
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.4ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.4ms | Allocations: 6506)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 00:16:20 -0600
+Started GET "/playlists" for ::1 at 2021-01-08 00:16:20 -0600
+Processing by SongsController#index as */*
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Processing by PlaylistsController#index as */*
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.2ms | Allocations: 7702)
+
+
+  [1m[36mPlaylist Load (0.2ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.2ms | Allocations: 1159)
+
+
+Started GET "/playlists" for ::1 at 2021-01-08 00:22:15 -0600
+Started GET "/songs" for ::1 at 2021-01-08 00:22:15 -0600
+Processing by PlaylistsController#index as */*
+Processing by SongsController#index as */*
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  [1m[36mSong Load (0.1ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 1947)
+
+
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.1ms | Allocations: 7346)
+
+
+Started GET "/playlists" for ::1 at 2021-01-08 00:38:34 -0600
+Started GET "/songs" for ::1 at 2021-01-08 00:38:34 -0600
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PlaylistsController#index as */*
+Processing by SongsController#index as */*
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 10ms (Views: 9.3ms | ActiveRecord: 0.1ms | Allocations: 1977)
+
+
+Completed 200 OK in 13ms (Views: 12.5ms | ActiveRecord: 0.2ms | Allocations: 7371)
+
+
+Started GET "/playlists" for ::1 at 2021-01-08 00:38:40 -0600
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.2ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 950)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 00:38:40 -0600
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.2ms | Allocations: 6506)
+
+
+Started GET "/playlists" for ::1 at 2021-01-08 00:53:55 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.8ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.8ms | Allocations: 964)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 00:53:55 -0600
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.9ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.9ms | Allocations: 6527)
+
+
+Started POST "/login" for ::1 at 2021-01-08 00:54:32 -0600
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 118ms (ActiveRecord: 0.0ms | Allocations: 71871)
+
+
+  
+NameError (undefined local variable or method `user_params' for #<SessionsController:0x00007fcfdaa42200>
+Did you mean?  users_params):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started GET "/playlists" for ::1 at 2021-01-08 00:56:12 -0600
+Started GET "/songs" for ::1 at 2021-01-08 00:56:12 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.2ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 11ms (Views: 6.5ms | ActiveRecord: 0.8ms | Allocations: 6703)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.3ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 18ms (Views: 13.9ms | ActiveRecord: 0.9ms | Allocations: 13251)
+
+
+Started POST "/login" for ::1 at 2021-01-08 00:56:33 -0600
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 216ms (Views: 0.1ms | ActiveRecord: 0.8ms | Allocations: 5532)
+
+
+Started POST "/login" for ::1 at 2021-01-08 01:04:41 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 200ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 766)
+
+
+Started POST "/login" for ::1 at 2021-01-08 01:04:57 -0600
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 204ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 822)
+
+
+Started POST "/login" for ::1 at 2021-01-08 01:05:03 -0600
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 205ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 822)
+
+
+Started GET "/playlists" for ::1 at 2021-01-08 01:05:29 -0600
+Started GET "/songs" for ::1 at 2021-01-08 01:05:29 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.3ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 8ms (Views: 7.1ms | ActiveRecord: 0.3ms | Allocations: 6560)
+
+
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 13ms (Views: 9.6ms | ActiveRecord: 0.6ms | Allocations: 6477)
+
+
+Started POST "/login" for ::1 at 2021-01-08 01:05:44 -0600
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 225ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 779)
+
+
+Started POST "/login" for ::1 at 2021-01-08 01:05:44 -0600
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 210ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 746)
+
+
+Started POST "/login" for ::1 at 2021-01-08 01:08:18 -0600
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 210ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 822)
+
+
+Started POST "/login" for ::1 at 2021-01-08 01:09:47 -0600
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 208ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 822)
+
+
+Started POST "/login" for ::1 at 2021-01-08 01:10:20 -0600
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 202ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 822)
+
+
+Started POST "/login" for ::1 at 2021-01-08 01:15:14 -0600
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 233ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 822)
+
+
+Started GET "/playlists" for ::1 at 2021-01-08 01:22:44 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.2ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Started GET "/songs" for ::1 at 2021-01-08 01:22:44 -0600
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.2ms | Allocations: 1226)
+
+
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.5ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.5ms | Allocations: 6527)
+
+
+Started POST "/users" for ::1 at 2021-01-08 01:23:13 -0600
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"db10", "password"=>"[FILTERED]", "img_url"=>"C:\\fakepath\\dom.png"}}
+[31mUnpermitted parameter: :img_url[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?)[0m  [["username", "db10"], ["created_at", "2021-01-08 07:23:13.507304"], ["updated_at", "2021-01-08 07:23:13.507304"], ["password_digest", "$2a$12$cotF4na8bM7fQviBZ9SKYOctRtgBSNY.iebTUr1loiXqsF2ds8RR."]]
+  ↳ app/controllers/users_controller.rb:7:in `create'
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:7:in `create'
+Completed 200 OK in 209ms (Views: 0.1ms | ActiveRecord: 2.0ms | Allocations: 2953)
+
+
+Started POST "/login" for ::1 at 2021-01-08 01:33:25 -0600
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 198ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 838)
+
+
+Started POST "/login" for ::1 at 2021-01-08 01:39:39 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 198ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 838)
+
+
+Started POST "/login" for ::1 at 2021-01-08 01:40:50 -0600
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 205ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 822)
+
+
+Started GET "/playlists" for ::1 at 2021-01-08 01:45:36 -0600
+Started GET "/songs" for ::1 at 2021-01-08 01:45:36 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.2ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.2ms | Allocations: 6755)
+
+
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.2ms | Allocations: 2395)
+
+
+Started POST "/login" for ::1 at 2021-01-08 01:47:14 -0600
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 200ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 822)
+
+
+Started GET "/playlists" for ::1 at 2021-01-08 01:52:34 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PlaylistsController#index as HTML
+  [1m[36mPlaylist Load (0.2ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.2ms | Allocations: 952)
+
+
+Started GET "/playlists/1" for ::1 at 2021-01-08 01:52:46 -0600
+Processing by PlaylistsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPlaylist Load (0.2ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists" WHERE "playlists"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/playlists_controller.rb:38:in `show'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 860)
+
+

@@ -19,8 +19,7 @@ class App extends React.Component {
 
     state = {
         songs: [],
-        errors: [],
-        playlists: []
+ 
     }
 
 
@@ -31,13 +30,7 @@ class App extends React.Component {
         .then(songs => this.setState( { songs }))
     }
     
-    getPlaylists = () => {
-        fetch(`http://localhost:3000/playlists`)
-        .then(res => res.json())
-        .then(playlists => this.setState({
-            playlists
-        }))
-    }
+
 
 
 
@@ -60,7 +53,7 @@ class App extends React.Component {
                             return <Signup />
                         }}/>
                         <Route exact path="/songs" component={() => {
-                            return <Songs songs={this.state.songs} />
+                            return <Songs />
                         }}/>
 
                     </Switch>
