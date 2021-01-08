@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Card, Icon } from 'semantic-ui-react'
 
 
@@ -23,7 +24,7 @@ const Main = (props) => {
                 <Card.Content header={recent.name} />
                 <Card.Content description={recent.artist} />
                 <Card.Content extra>
-                  <Icon name="play" />Play Song
+                <a href={recent.url} target="_blank"><Icon name="play" />Play Song</a>
                 </Card.Content>
                 </Card>
               ))

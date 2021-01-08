@@ -2542,3 +2542,446 @@ Processing by PlaylistsController#show as HTML
 Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 860)
 
 
+Started GET "/" for ::1 at 2021-01-08 03:10:00 -0600
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/dbrisco/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/dbrisco/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 12.1ms | Allocations: 480)
+Completed 200 OK in 26ms (Views: 19.0ms | ActiveRecord: 0.0ms | Allocations: 2630)
+
+
+Started GET "/playlists" for ::1 at 2021-01-08 03:12:10 -0600
+Started GET "/songs" for ::1 at 2021-01-08 03:12:10 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.3ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 31ms (Views: 15.5ms | ActiveRecord: 1.0ms | Allocations: 15542)
+
+
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.2ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 24ms (Views: 16.0ms | ActiveRecord: 0.9ms | Allocations: 6898)
+
+
+Started POST "/login" for ::1 at 2021-01-08 03:12:27 -0600
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 224ms (Views: 0.1ms | ActiveRecord: 1.2ms | Allocations: 5616)
+
+
+Started GET "/routes" for ::1 at 2021-01-08 03:32:26 -0600
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [GET] "/routes"):
+  
+actionpack (6.0.3.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.4) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.7) lib/puma/configuration.rb:228:in `call'
+puma (4.3.7) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.7) lib/puma/server.rb:472:in `process_client'
+puma (4.3.7) lib/puma/server.rb:328:in `block in run'
+puma (4.3.7) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/playlists" for ::1 at 2021-01-08 03:49:28 -0600
+Started GET "/songs" for ::1 at 2021-01-08 03:49:28 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PlaylistsController#index as */*
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Processing by SongsController#index as */*
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.1ms | Allocations: 2182)
+
+
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 6.0ms | ActiveRecord: 0.2ms | Allocations: 6727)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 04:09:26 -0600
+Started GET "/playlists" for ::1 at 2021-01-08 04:09:26 -0600
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SongsController#index as */*
+Processing by PlaylistsController#index as */*
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.2ms | Allocations: 7304)
+
+
+Completed 200 OK in 6ms (Views: 5.6ms | ActiveRecord: 0.1ms | Allocations: 7121)
+
+
+Started GET "/playlists" for ::1 at 2021-01-08 04:09:30 -0600
+Started GET "/songs" for ::1 at 2021-01-08 04:09:30 -0600
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Processing by SongsController#index as */*
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 1367)
+
+
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 5.8ms | ActiveRecord: 0.2ms | Allocations: 6700)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 04:25:35 -0600
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 5.8ms | ActiveRecord: 0.2ms | Allocations: 6530)
+
+
+Started GET "/playlists" for ::1 at 2021-01-08 04:30:40 -0600
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 950)
+
+
+Started GET "/playlists" for ::1 at 2021-01-08 04:30:46 -0600
+Started GET "/songs" for ::1 at 2021-01-08 04:30:46 -0600
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms | Allocations: 1050)
+
+
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 5ms (Views: 5.1ms | ActiveRecord: 0.2ms | Allocations: 6530)
+
+
+Started GET "/playlists/1" for ::1 at 2021-01-08 04:36:53 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PlaylistsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPlaylist Load (0.3ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists" WHERE "playlists"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/playlists_controller.rb:38:in `show'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 879)
+
+
+Started GET "/playlists" for ::1 at 2021-01-08 04:38:57 -0600
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.1ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.1ms | Allocations: 951)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 04:57:44 -0600
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 5ms (Views: 4.5ms | ActiveRecord: 0.2ms | Allocations: 6530)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 05:09:35 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 7ms (Views: 6.8ms | ActiveRecord: 0.2ms | Allocations: 6530)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 05:09:41 -0600
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 5.6ms | ActiveRecord: 0.2ms | Allocations: 6506)
+
+
+Started POST "/login" for ::1 at 2021-01-08 05:12:02 -0600
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"dbrisco10", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dbrisco10"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 243ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 840)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 05:13:27 -0600
+Processing by SongsController#index as */*
+  [1m[36mSong Load (23.0ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 31ms (Views: 7.6ms | ActiveRecord: 23.0ms | Allocations: 6509)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 05:16:32 -0600
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.2ms | Allocations: 6506)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 05:42:39 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SongsController#index as */*
+  [1m[36mSong Load (1.0ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 1.0ms | Allocations: 6530)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 05:54:06 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SongsController#index as */*
+  [1m[36mSong Load (1.1ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 1.1ms | Allocations: 6530)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 06:06:44 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.2ms | Allocations: 6530)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 06:10:05 -0600
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.2ms | Allocations: 6506)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 06:16:44 -0600
+Started GET "/playlists" for ::1 at 2021-01-08 06:16:44 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.3ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.3ms | Allocations: 6638)
+
+
+Processing by PlaylistsController#index as */*
+  [1m[36mPlaylist Load (0.7ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/playlists_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.7ms | Allocations: 953)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 07:06:26 -0600
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SongsController#index as */*
+  [1m[36mSong Load (1.4ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 42ms (Views: 34.5ms | ActiveRecord: 3.2ms | Allocations: 13975)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 07:10:21 -0600
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.3ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 17ms (Views: 16.0ms | ActiveRecord: 0.3ms | Allocations: 6523)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 07:10:48 -0600
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 19ms (Views: 18.7ms | ActiveRecord: 0.2ms | Allocations: 6523)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 07:14:14 -0600
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 10ms (Views: 9.5ms | ActiveRecord: 0.2ms | Allocations: 6507)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 07:15:13 -0600
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.3ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 10ms (Views: 9.3ms | ActiveRecord: 0.3ms | Allocations: 6523)
+
+
+Started POST "/playlists" for ::1 at 2021-01-08 07:15:55 -0600
+Processing by PlaylistsController#create as */*
+  Parameters: {"name"=>"test1", "description"=>"all the jams", "playlist"=>{"name"=>"test1", "description"=>"all the jams"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.3ms | Allocations: 511)
+
+
+  
+NoMethodError (undefined method `user' for nil:NilClass
+Did you mean?  super):
+  
+app/controllers/playlists_controller.rb:17:in `create'
+Started POST "/playlists" for ::1 at 2021-01-08 07:17:34 -0600
+Processing by PlaylistsController#create as */*
+  Parameters: {"name"=>"1", "description"=>"1", "user_id"=>0, "playlist"=>{"user_id"=>0, "name"=>"1", "description"=>"1"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 487)
+
+
+  
+NoMethodError (undefined method `user' for nil:NilClass
+Did you mean?  super):
+  
+app/controllers/playlists_controller.rb:17:in `create'
+Started POST "/playlists" for ::1 at 2021-01-08 07:25:07 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+SyntaxError (/Users/dbrisco/Flatiron/phase4project/music-player/backend/app/controllers/playlists_controller.rb:50: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/playlists_controller.rb:50: syntax error, unexpected end-of-input, expecting end
+app/controllers/playlists_controller.rb:50: syntax error, unexpected end-of-input, expecting end
+Started POST "/playlists" for ::1 at 2021-01-08 07:25:44 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PlaylistsController#create as */*
+  Parameters: {"name"=>"5", "description"=>"564", "user_id"=>0, "playlist"=>{"user_id"=>0, "name"=>"5", "description"=>"564"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.4ms | Allocations: 506)
+
+
+  
+NoMethodError (undefined method `user' for nil:NilClass
+Did you mean?  super):
+  
+app/controllers/playlists_controller.rb:17:in `create'
+Started POST "/playlists" for ::1 at 2021-01-08 07:26:40 -0600
+Processing by PlaylistsController#create as */*
+  Parameters: {"name"=>"avc", "description"=>"abc", "user_id"=>1, "playlist"=>{"user_id"=>1, "name"=>"avc", "description"=>"abc"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 484)
+
+
+  
+NoMethodError (undefined method `user' for nil:NilClass
+Did you mean?  super):
+  
+app/controllers/playlists_controller.rb:17:in `create'
+Started POST "/playlists" for ::1 at 2021-01-08 07:27:26 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PlaylistsController#create as */*
+  Parameters: {"name"=>"avc", "description"=>"abc", "user_id"=>1, "playlist"=>{"user_id"=>1, "name"=>"avc", "description"=>"abc"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.4ms | Allocations: 506)
+
+
+  
+NoMethodError (undefined method `user' for nil:NilClass
+Did you mean?  super):
+  
+app/controllers/playlists_controller.rb:17:in `create'
+Started POST "/playlists" for ::1 at 2021-01-08 07:28:26 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PlaylistsController#create as */*
+  Parameters: {"name"=>"avc", "description"=>"abc", "user_id"=>1, "playlist"=>{"user_id"=>1, "name"=>"avc", "description"=>"abc"}}
+Completed 500 Internal Server Error in 130ms (ActiveRecord: 0.4ms | Allocations: 71045)
+
+
+  
+NameError (undefined local variable or method `playlist_params' for #<PlaylistsController:0x00007fb4f696ce88>
+Did you mean?  playlist_parms
+               playlist_path):
+  
+app/controllers/playlists_controller.rb:22:in `create'
+Started POST "/playlists" for ::1 at 2021-01-08 07:28:39 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PlaylistsController#create as */*
+  Parameters: {"name"=>"avc", "description"=>"abc", "user_id"=>1, "playlist"=>{"user_id"=>1, "name"=>"avc", "description"=>"abc"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+  [1m[36mPlaylist Create (0.9ms)[0m  [1m[32mINSERT INTO "playlists" ("user_id", "name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 1], ["name", "avc"], ["description", "abc"], ["created_at", "2021-01-08 13:28:39.525837"], ["updated_at", "2021-01-08 13:28:39.525837"]]
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+Completed 204 No Content in 38ms (ActiveRecord: 3.1ms | Allocations: 13638)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 07:29:17 -0600
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.7ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 18ms (Views: 13.2ms | ActiveRecord: 1.4ms | Allocations: 12891)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 07:29:29 -0600
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.2ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.2ms | Allocations: 6506)
+
+
+Started POST "/playlists" for ::1 at 2021-01-08 07:29:45 -0600
+Processing by PlaylistsController#create as */*
+  Parameters: {"name"=>"45", "description"=>"456", "user_id"=>1, "playlist"=>{"user_id"=>1, "name"=>"45", "description"=>"456"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+  [1m[36mPlaylist Create (0.5ms)[0m  [1m[32mINSERT INTO "playlists" ("user_id", "name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 1], ["name", "45"], ["description", "456"], ["created_at", "2021-01-08 13:29:45.322913"], ["updated_at", "2021-01-08 13:29:45.322913"]]
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+Completed 204 No Content in 9ms (ActiveRecord: 3.1ms | Allocations: 3580)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 07:32:31 -0600
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.3ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 10ms (Views: 9.0ms | ActiveRecord: 0.3ms | Allocations: 6506)
+
+
+Started POST "/playlists" for ::1 at 2021-01-08 07:32:40 -0600
+Processing by PlaylistsController#create as */*
+  Parameters: {"name"=>"abc", "description"=>"123", "user_id"=>1, "playlist"=>{"user_id"=>1, "name"=>"abc", "description"=>"123"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+  [1m[36mPlaylist Create (0.7ms)[0m  [1m[32mINSERT INTO "playlists" ("user_id", "name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 1], ["name", "abc"], ["description", "123"], ["created_at", "2021-01-08 13:32:40.437542"], ["updated_at", "2021-01-08 13:32:40.437542"]]
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+Completed 204 No Content in 8ms (ActiveRecord: 1.8ms | Allocations: 3594)
+
+
+Started GET "/songs" for ::1 at 2021-01-08 07:34:17 -0600
+Processing by SongsController#index as */*
+  [1m[36mSong Load (0.3ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m
+  ↳ app/controllers/songs_controller.rb:5:in `index'
+Completed 200 OK in 21ms (Views: 20.6ms | ActiveRecord: 0.3ms | Allocations: 6509)
+
+
+Started POST "/playlists" for ::1 at 2021-01-08 07:34:36 -0600
+Processing by PlaylistsController#create as */*
+  Parameters: {"name"=>"450", "description"=>"450", "user_id"=>1, "playlist"=>{"user_id"=>1, "name"=>"450", "description"=>"450"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+  [1m[36mPlaylist Create (0.4ms)[0m  [1m[32mINSERT INTO "playlists" ("user_id", "name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["user_id", 1], ["name", "450"], ["description", "450"], ["created_at", "2021-01-08 13:34:36.891548"], ["updated_at", "2021-01-08 13:34:36.891548"]]
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/playlists_controller.rb:23:in `create'
+Completed 204 No Content in 6ms (ActiveRecord: 1.4ms | Allocations: 3580)
+
+

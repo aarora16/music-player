@@ -14,11 +14,13 @@ class PlaylistsController < ApplicationController
 
 
   def create
-    if @playlist.user != current_user
-      render json: { msg: "Please login to create playlist" }
-    else 
-      @playlist.create(playlist_params)
-    end
+    # if @playlist.user != @@current_user
+    #   render json: { msg: "Please login to create playlist" }
+    # else 
+    #   @playlist = Playlist.new(playlist_params)
+    # end
+    @playlist = Playlist.new(playlist_params)
+    @playlist.save
   end
 
   def destroy
@@ -44,7 +46,7 @@ class PlaylistsController < ApplicationController
   end
 
   private
-  def playlist_parms
+  def playlist_params
     params.require(:playlist).permit(:user_id, :name, :description)
   end
 end

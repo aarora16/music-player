@@ -1,45 +1,70 @@
 import React from 'react'
-import { Icon } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 
 
 
 class Playlists extends React.Component {
-  state = {
-    playlists: []
-  }
-
-  componentDidMount() {
-    fetch('http://localhost:3000/playlists')
-    .then(res => res.json())
-    .then(playlists => this.setState({ playlists }))
-  }
   
-  // addPlaylist = (name, description) => {
-  //   fetch(`http://localhost:3000/playlists/${id}`,{
-  //     method: "POST"
-  //   }).then(res = res.json())
+  initialState = {
+    name: "",
+    description: "",
+    user_id: 1
+  }
 
-  //   const playlists = this.state.playlists
-  //   const updatedPlaylists = playlists.push()
-  //   this.setState({
-  //     name: 
-  //   })
-  // }
+  state = this.initialState
+
+  handleInputChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+
+
+
+  addPlaylist = (e) => {
+    e.preventDefault()
+    this.props.addNewPlaylist(this.state)
+    // this.setState(this.initialState)
+  }
+
   
 
   render() {
     return (
-      <div className="playlists">
-          <h5>PLAYLISTS</h5>
-          <Icon name="plus" size="tiny" />New Playlist
-            <hr></hr>
-            <ul>
-            {
-              this.state.playlists.map(playlist => (
-                <li key={playlist.id}>{playlist.name}</li>
-              ))
-            }
-            </ul>
+      <div className="Main">
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Form onSubmit={this.addPlaylist}>
+            <Form.Field>
+              <label>Playlist Name</label>
+              <input
+              id="playlist-name"
+              type="text"
+              name="name"
+              onChange={this.handleInputChange}
+              value={this.state.name}
+              placeholder=""
+              ></input>
+            </Form.Field>
+            <Form.Field>
+              <label>Description</label>
+              <input
+              id="playlist-description"
+              type="text"
+              name="description"
+              onChange={this.handleInputChange}
+              value={this.state.description}
+              ></input>
+            </Form.Field>
+            <Button type="submit" content='Add' primary />
+
+
+          </Form>
+
+
 
       </div>
     )

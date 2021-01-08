@@ -7,6 +7,7 @@ import Player from './containers/Player'
 import Signup from './components/Signup'
 import Login from './components/Login'
 import Songs from './containers/Songs'
+import Playlists from './containers/Playlists'
 import {
     BrowserRouter as Router,
     Route,
@@ -19,7 +20,7 @@ class App extends React.Component {
 
     state = {
         songs: [],
- 
+        playlists: []
     }
 
 
@@ -29,6 +30,25 @@ class App extends React.Component {
         .then(res => res.json())
         .then(songs => this.setState( { songs }))
     }
+
+
+
+
+    addNewPlaylist = (playlist) => {
+        fetch('http://localhost:3000/playlists',{
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(playlist)
+          })
+         .then(res => res.json())
+         .then(data => console.log(data))
+        //  .then(post => {
+        //      this.props.history.push('/')
+        //  })
+      }
+    
     
 
 
@@ -40,7 +60,7 @@ class App extends React.Component {
             <div className="App">
                 <Router>
                     <Topbar />
-                    <Sidebar />
+                    <Sidebar songs={this.state.songs} playlists={this.state.playlists}/>
                     <Player />
                     <Switch>
                         <Route exact path="/" component={() => {
@@ -53,7 +73,10 @@ class App extends React.Component {
                             return <Signup />
                         }}/>
                         <Route exact path="/songs" component={() => {
-                            return <Songs />
+                            return <Songs songs={this.state.songs}/>
+                        }}/>
+                        <Route exact path="/playlist" component={() => {
+                            return <Playlists songs={this.state.songs} addNewPlaylist={this.addNewPlaylist}/>
                         }}/>
 
                     </Switch>
